@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Home</title>
+    <style>
+     
+
+      .negrito{
+        font-weight: bold;
+      }
+
+    </style>
+</head>
+<body>
+    
+  <%- include('includes/header') %>
+
+  <section class="container">
+    <h1 class="title">Agenda</h1>
+
+    <%- include('includes/messages') %>
+
+    <p class="sub-title">Seus contatos estão abaixo</p>
+
+    <a href="/contact"> <i  class="fa fa-plus-circle"></i></a>
+      
+      
+    <section class="contacts_container">
+      <% if(contacts.length > 0){ %>
+        <% contacts.forEach(contact => { %>
+          <div class="contact">
+            <div class="infoContainer">
+              <% if(contact.photo) {%>
+                <img src="http://localhost:3000/<%= contact.photo  %>" alt="Foto do Contato">
+              <% }else{ %>
+                <img src="/assets/images/person.png" alt="foto">
+              <% } %>
+              <div class="info">
+                <p><span><span class="negrito">Nome: </span><%= contact.name  %> </span><span> <%= contact.lastname %></span></p>
+                <% if (contact.email) { %>
+                  <p><span class="negrito">Email:</span> <%= contact.email %></p>
+                <% } %>
+                <% if (contact.number) { %>
+                <p><span class="negrito">Numero: </span><%= contact.number %></p>
+                <% } %>
+              </div>
+              <div class="infoedit"><a id="edit" href="/contact/index/<%= contact._id %>"><i class="fa-solid fa-pen-to-square"></i></a> <a id="delete" href="/contact/delete/<%= contact._id %>"><i class="fa-solid fa-trash"></i></a></div>
+            </div>
+          </div>
+        <% }) %>
+      <% }else{ %>
+        <p >Não exitem contatos na sua agenda</p>
+      <% } %>
+    </section>
+
+  </section>
+  <script src="/assets/js/home.bundle.js"></script>
+  <script src="https://kit.fontawesome.com/ee00765f8a.js" crossorigin="anonymous"></script>
+</body>
+</html>

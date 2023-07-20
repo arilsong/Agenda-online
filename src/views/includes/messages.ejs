@@ -1,0 +1,25 @@
+
+
+<% if (success && success.length) { %>
+  <div class="message_green">
+    <% success.forEach(function(success) { %>
+      <p><%= success %></p>
+    <% }); %>
+  </div>  
+
+  <script>
+    setTimeout(function() {
+      const flasmessage = document.querySelector('.message_green')
+
+      flasmessage.style.display = 'none'
+    }, 5000)
+  </script>
+<% } %>
+
+
+
+  
+  
+  
+
+  

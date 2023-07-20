@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Home</title>
+</head>
+<body>
+  <%- include('includes/header') %>
+
+    <div class="container">
+        
+      <h1><% if(contact.id) { %>Edite<% } else { %>Crie<% } %> o seu contacto</h1>
+        
+      <% if(contact.id) { %>
+        <form id="formContact" action="/contact/edit/<%= contact._id %>" method="post" enctype="multipart/form-data">
+      <% }else{ %>
+        <form id="formContact" action="/contact/register" method="post" enctype="multipart/form-data">
+      <% } %>
+            
+        <label for="photoInput" id="labelPhoto">
+          <input id="photoInput" type="file" name="photo">
+          <img <% if(contact.photo){ %>
+            src="http://localhost:3000/<%= contact.photo  %>" 
+            <% }else{%>
+            src="#" 
+            <% } %> id="previewImage" alt="">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </label>
+        
+        <label for="name">Nome</label>
+        <input id="iName" value="<%= contact.name %>" type="text" name="name">
+        <label for="lastname">Sobrenome</label>
+        <input  id="iLastname" value="<%= contact.lastname %>" type="text" name="lastname">
+        <label for="email">Email</label>
+        <input id="iEmail" value="<%= contact.email %>" type="email" name="email">
+        <label for="number">Numero</label>
+        <input id="iNumber" value="<%= contact.number %>" type="number" name="number">
+        <input type="submit" value="Enviar">
+      </form>
+       
+    </div>
+    <script src="/assets/js/contact.bundle.js"></script>
+    <script src="/assets/js/home.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/ee00765f8a.js" crossorigin="anonymous"></script>
+</body>
+</html>
